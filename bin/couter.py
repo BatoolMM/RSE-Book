@@ -24,14 +24,13 @@ def collection_to_csv(collection, num=None):
     writer.writerow(collection[0:num])
 
 def main(args):
-    with open(args.infile, 'r') as reader:
-        word_counts = count_words(reader)
+    word_counts = count_words(args.infile)
     collection_to_csv(word_counts, num=args.num)
 
 
 if __name__ =='__main__':
     parser = argparse.ArgumentParser(description="Count Words in a file")
-    parser.add_argument("infile", type=str, help="Add the input text file")
+    parser.add_argument("infile", type=argparse.FileType('r'), nargs='?', help="Add the input text file")
     parser.add_argument("_n","__num", default=None, type=int, help="Add the number of words")
     args = parser.parse_args()
     main(args)
