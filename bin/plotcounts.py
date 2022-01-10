@@ -10,7 +10,7 @@ def main(args):
     df = pd.read_csv(args.infile, header= None, names=("word", "word_freq"))
     df['rank'] = df['word_freq'].rank(ascending=False, method='max')
     df['inverse_rank'] = 1 / df['rank']
-    scatplot = pd.plot.scatter(x='word_freq', y='inverse_rank', figsize=[12,6], grid=True, xlim=args.xlim)
+    scatplot = pd.plot.scatter(x='word_freq', y='inverse_rank', loglog=True, figsize=[12,6], grid=True, xlim=args.xlim)
     sactplot.figure.savefig(args.outfile)
 
 
